@@ -28,5 +28,7 @@ window.addEventListener('load', function(){
             console.log(error);
         }
         finally {console.log("Weather fetched");
+        
     }});
+    
 });
