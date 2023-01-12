@@ -14,18 +14,19 @@ window.addEventListener('load', function(){
             });
     }
     
-    searchForm.addEventListener("submit", function(event){ 
+    searchForm.addEventListener("submit", async function(event){ 
         event.preventDefault();
         city = cityInput.value;
         console.log("Submitted " + cityInput.value);
-        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${city}&key=5ffc6c893abd4262b33abf21d8deab53`)
-            .then(response => response.json())
-            .then(data => {
-                lat = data.results[0].geometry.lat;
-                lng = data.results[0].geometry.lng;
-                getWeather(lat, lng);
-            })
-            .catch(error => console.log(error));
-        console.log("Weather fetched");
-    });
+        try{
+            let response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${city}&key=5ffc6c893abd4262b33abf21d8deab53`);
+            let data = await response.json();
+            lat = data.results[0].geometry.lat;
+            lng = data.results[0].geometry.lng;
+            getWeather(lat, lng);
+        }catch(error){
+            console.log(error);
+        }
+        finally {console.log("Weather fetched");
+    }});
 });
