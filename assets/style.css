@@ -1,0 +1,13 @@
+
+#grid-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#search-box{
+    grid-column: 1/3;
+}
+
+#forecast-area{
+    grid-column: 3/4;
+}
